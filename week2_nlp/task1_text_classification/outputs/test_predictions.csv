@@ -1,0 +1,8 @@
+text,actual_label,predicted_label
+service terrible,negative,positive
+quality poor,negative,negative
+product failed completely,negative,positive
+amazing experience,positive,negative
+quality impressive,positive,negative
+extremely disappointed,negative,positive
+product works perfectly,positive,positive

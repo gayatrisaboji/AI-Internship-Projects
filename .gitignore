@@ -1,3 +1,7 @@
 # Python cache
 __pycache__/
 *.pyc
+
+# Virtual environments
+venv/
+week2_nlp/venv/
