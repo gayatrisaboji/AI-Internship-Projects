@@ -1,0 +1,156 @@
+{
+    "personal_information": {
+        "name": "Michelle Smith",
+        "email": "email@email.com",
+        "phone": "(541) 754-3010",
+        "linkedin": "",
+        "github": ""
+    },
+    "skills": [
+        "Leadership",
+        "Networking",
+        "Project Management",
+        "Strategic Planning",
+        "Team Leadership"
+    ],
+    "education": [
+        "Bachelor Degree in Advertising and Apr 2014 - Jan 2017",
+        "University of Denver, Denver",
+        "Advanced Diploma in Global Customer Apr 2019",
+        "Business College of New York, Brooklyn"
+    ],
+    "experience": [
+        "Global Key Account Manager Sep 2022 - Apr 2025 Place of birth"
+    ],
+    "certifications": [
+        "Expand company service offering to affiliate stores of six main key",
+        "accounts which doubled client spent turnover",
+        "Decrease transportation costs bay securing service level",
+        "agreements with local transport providers",
+        "Conduct client interviews for testimonial and referral purposes",
+        "Certified Key Accounts Manager (CKAM), May 2016",
+        "Udemy, Online, Udemy, Online",
+        "Certificate in Project Management, Nov 2021",
+        "Certified Institute of Project Managers",
+        "(CIPM)"
+    ],
+    "projects": [],
+    "languages": [
+        "English",
+        "Spanish"
+    ],
+    "named_entities": [
+        {
+            "text": "Michelle Smith",
+            "label": "PERSON"
+        },
+        {
+            "text": "Pacific Ave",
+            "label": "ORG"
+        },
+        {
+            "text": "Los Angeles",
+            "label": "GPE"
+        },
+        {
+            "text": "Global Key Account",
+            "label": "ORG"
+        },
+        {
+            "text": "Sep",
+            "label": "PERSON"
+        },
+        {
+            "text": "Inash Oil & Petroleum",
+            "label": "ORG"
+        },
+        {
+            "text": "Dallas",
+            "label": "GPE"
+        },
+        {
+            "text": "TX Sant Antonio",
+            "label": "PERSON"
+        },
+        {
+            "text": "Account Managers",
+            "label": "ORG"
+        },
+        {
+            "text": "Brought",
+            "label": "ORG"
+        },
+        {
+            "text": "Client Relationship",
+            "label": "FAC"
+        },
+        {
+            "text": "Responsible",
+            "label": "ORG"
+        },
+        {
+            "text": "Austin",
+            "label": "PERSON"
+        },
+        {
+            "text": "Exceed",
+            "label": "ORG"
+        },
+        {
+            "text": "Talent Development\n• Post-Sales: Capture",
+            "label": "ORG"
+        },
+        {
+            "text": "English",
+            "label": "LANGUAGE"
+        },
+        {
+            "text": "Presidion Feb 2015 - Nov 2017",
+            "label": "ORG"
+        },
+        {
+            "text": "San Antonio",
+            "label": "GPE"
+        },
+        {
+            "text": "Texas",
+            "label": "GPE"
+        },
+        {
+            "text": "Drive",
+            "label": "ORG"
+        },
+        {
+            "text": "Recover",
+            "label": "ORG"
+        },
+        {
+            "text": "Expand",
+            "label": "ORG"
+        },
+        {
+            "text": "Conduct",
+            "label": "ORG"
+        },
+        {
+            "text": "Denver",
+            "label": "GPE"
+        },
+        {
+            "text": "Relationship Management\nBusiness College of New York",
+            "label": "ORG"
+        },
+        {
+            "text": "Brooklyn",
+            "label": "GPE"
+        },
+        {
+            "text": "Project Management",
+            "label": "ORG"
+        },
+        {
+            "text": "Certified Institute of Project Managers",
+            "label": "ORG"
+        }
+    ]
+}
