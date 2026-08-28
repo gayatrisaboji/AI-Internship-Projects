@@ -1,9 +1,11 @@
+
 import streamlit as st
+
 from qna_model import load_qa_model, get_answer
 
 
 # ============================================================
-# PAGE CONFIG
+# PAGE CONFIGURATION
 # ============================================================
 
 st.set_page_config(
@@ -14,18 +16,83 @@ st.set_page_config(
 
 
 # ============================================================
-# TITLE
+# CUSTOM CSS
 # ============================================================
 
-st.title("🤖 AI Question Answering System")
+st.markdown(
+    """
+    <style>
 
-st.write(
-    "Ask questions from a given context using a "
-    "Transformer-based Question Answering model."
+    .main-title {
+        font-size: 48px;
+        font-weight: 800;
+        margin-bottom: 5px;
+    }
+
+    .subtitle {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 25px;
+    }
+
+    .hero {
+        padding: 25px;
+        border-radius: 15px;
+        background: linear-gradient(
+            135deg,
+            #f5f7ff,
+            #eef2ff
+        );
+        margin-bottom: 25px;
+    }
+
+    .answer-box {
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        background-color: #f8f9fa;
+        font-size: 22px;
+        font-weight: 600;
+    }
+
+    .pipeline-box {
+        padding: 15px;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+        margin-bottom: 10px;
+    }
+
+    </style>
+    """,
+    unsafe_allow_html=True
 )
 
-st.divider()
+# ============================================================
+# HEADER
+# ============================================================
 
+st.markdown(
+    """
+    <div class="hero">
+        <div style="font-size:15px; font-weight:700;">
+            HUGGINGFACE - TRANSFORMERS - NLP
+        </div>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    '<div class="main-title">Ask your context.<br>Get your answer.</div>',
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    '<div class="subtitle">An intelligent extractive Question Answering system powered by a pre-trained Transformer model.</div>',
+    unsafe_allow_html=True
+)
+
+   
 
 # ============================================================
 # LOAD MODEL
@@ -37,13 +104,12 @@ def load_model():
 
 
 try:
-    model = load_model()
 
-    st.success("✅ Transformer model loaded successfully.")
+    model = load_model()
 
 except Exception as e:
 
-    st.error("❌ Model loading failed.")
+    st.error("❌ Model could not be loaded.")
 
     st.code(str(e))
 
@@ -56,18 +122,26 @@ except Exception as e:
 
 with st.sidebar:
 
-    st.header("📌 AI QnA")
+    st.header("🧠 AI QnA")
 
     st.write("Week 2 • NLP • Task 03")
 
     st.divider()
 
+    st.subheader("Application")
+
+    st.success("✓ Model Loaded")
+    st.success("✓ Transformer NLP")
+    st.success("✓ Extractive QnA")
+
+    st.divider()
+
     st.subheader("NLP Pipeline")
 
-    st.write("✅ Context Processing")
-    st.write("✅ Question Encoding")
-    st.write("✅ Transformer Inference")
-    st.write("✅ Answer Extraction")
+    st.write("✓ Context Processing")
+    st.write("✓ Question Encoding")
+    st.write("✓ Transformer Inference")
+    st.write("✓ Answer Extraction")
 
     st.divider()
 
@@ -78,36 +152,43 @@ with st.sidebar:
 
 
 # ============================================================
-# CONTEXT
+# CONTEXT SECTION
 # ============================================================
 
 st.header("📚 Context")
 
-default_context = (
-    "Python is a high-level, general-purpose programming "
-    "language created by Guido van Rossum. It was first "
-    "released in 1991. Python is widely used for web "
-    "development, data science, artificial intelligence, "
-    "machine learning, automation, and scientific computing. "
-    "It is known for its simple syntax and readability."
-)
+default_context = """
+Artificial intelligence is a branch of computer science
+that focuses on creating machines capable of performing
+tasks that normally require human intelligence. These tasks
+include learning, reasoning, problem solving, understanding
+natural language, and recognizing images.
+
+Machine learning is a major part of artificial intelligence
+that allows computers to learn patterns from data without
+being explicitly programmed for every task.
+
+Artificial intelligence is widely used in healthcare,
+education, finance, transportation, robotics, and
+customer service.
+"""
 
 context = st.text_area(
     "Enter your context:",
-    value=default_context,
-    height=250
+    value=default_context.strip(),
+    height=260
 )
 
 
 # ============================================================
-# QUESTION
+# QUESTION SECTION
 # ============================================================
 
 st.header("❓ Question")
 
 question = st.text_input(
     "Enter your question:",
-    placeholder="Example: Who created Python?"
+    placeholder="Example: What is artificial intelligence?"
 )
 
 
@@ -123,38 +204,48 @@ col1, col2, col3 = st.columns(3)
 with col1:
 
     if st.button(
-        "Who created Python?",
+        "What is AI?",
         use_container_width=True
     ):
 
-        question = "Who created Python?"
+        st.session_state["question"] = (
+            "What is artificial intelligence?"
+        )
 
-        st.session_state["question"] = question
+        st.rerun()
 
 
 with col2:
 
     if st.button(
-        "When was Python released?",
+        "What is machine learning?",
         use_container_width=True
     ):
 
-        question = "When was Python first released?"
+        st.session_state["question"] = (
+            "What is machine learning?"
+        )
 
-        st.session_state["question"] = question
+        st.rerun()
 
 
 with col3:
 
     if st.button(
-        "What is Python used for?",
+        "Where is AI used?",
         use_container_width=True
     ):
 
-        question = "What is Python used for?"
+        st.session_state["question"] = (
+            "Where is artificial intelligence used?"
+        )
 
-        st.session_state["question"] = question
+        st.rerun()
 
+
+# ============================================================
+# USE SELECTED EXAMPLE QUESTION
+# ============================================================
 
 if "question" in st.session_state:
 
@@ -200,51 +291,25 @@ if st.button(
 
 
     # --------------------------------------------------------
-    # MODEL PROCESSING
+    # MODEL INFERENCE
     # --------------------------------------------------------
 
     with st.spinner(
-        "🤖 Finding the answer..."
+        "🤖 Transformer is finding the answer..."
     ):
 
         try:
 
-            # Try:
-            # get_answer(model, question, context)
-
             result = get_answer(
                 model,
-                question,
-                context
+                context,
+                question
             )
-
-
-        except TypeError:
-
-            # Try alternate function order
-            try:
-
-                result = get_answer(
-                    question,
-                    context,
-                    model
-                )
-
-            except Exception as e:
-
-                st.error(
-                    "❌ Error while getting answer."
-                )
-
-                st.code(str(e))
-
-                st.stop()
-
 
         except Exception as e:
 
             st.error(
-                "❌ Error while getting answer."
+                "❌ Error while generating the answer."
             )
 
             st.code(str(e))
@@ -253,88 +318,75 @@ if st.button(
 
 
     # ========================================================
-    # PROCESS RESULT
+    # EXTRACT RESULT
     # ========================================================
 
-    answer = ""
-    confidence = None
-
-
-    if isinstance(result, dict):
-
-        answer = result.get(
-            "answer",
-            result.get("text", "")
-        )
-
-        confidence = result.get(
-            "confidence",
-            result.get("score", None)
-        )
-
-
-    elif isinstance(result, tuple):
-
-        if len(result) >= 1:
-
-            answer = result[0]
-
-        if len(result) >= 2:
-
-            confidence = result[1]
-
-
-    else:
-
-        answer = str(result)
+    answer = result["answer"]
+    confidence = result["confidence"]
+    start = result["start"]
+    end = result["end"]
 
 
     # ========================================================
-    # DISPLAY RESULT
+    # DISPLAY ANSWER
     # ========================================================
 
     st.header("🎯 Answer")
 
-    st.success(
-        answer
+    st.markdown(
+        f"""
+        <div class="answer-box">
+            {answer}
+        </div>
+        """,
+        unsafe_allow_html=True
     )
 
 
-    if confidence is not None:
+    # ========================================================
+    # METRICS
+    # ========================================================
 
-        try:
+    st.write("")
 
-            confidence_value = float(
-                confidence
-            )
+    metric1, metric2, metric3 = st.columns(3)
 
-            if confidence_value <= 1:
 
-                confidence_value *= 100
+    with metric1:
 
-            st.metric(
-                "Confidence",
-                f"{confidence_value:.2f}%"
-            )
+        st.metric(
+            "Confidence",
+            f"{confidence * 100:.2f}%"
+        )
 
-        except Exception:
 
-            st.write(
-                f"Confidence: {confidence}"
-            )
+    with metric2:
+
+        st.metric(
+            "Answer Start",
+            start
+        )
+
+
+    with metric3:
+
+        st.metric(
+            "Answer End",
+            end
+        )
 
 
     # ========================================================
-    # SHOW QUESTION
+    # QUESTION
     # ========================================================
 
-    st.subheader("Question")
+    st.subheader("❓ Question")
 
     st.write(question)
 
 
     # ========================================================
-    # SHOW CONTEXT
+    # CONTEXT
     # ========================================================
 
     with st.expander(
@@ -342,6 +394,74 @@ if st.button(
     ):
 
         st.write(context)
+
+
+    # ========================================================
+    # MODEL INFORMATION
+    # ========================================================
+
+    with st.expander(
+        "🤖 Model Information"
+    ):
+
+        st.write(
+            "Model: distilbert-base-cased-distilled-squad"
+        )
+
+        st.write(
+            "Task: Extractive Question Answering"
+        )
+
+        st.write(
+            "Framework: HuggingFace Transformers"
+        )
+
+
+# ============================================================
+# FEATURES
+# ============================================================
+
+st.divider()
+
+st.subheader("✨ Key Features")
+
+feature1, feature2, feature3 = st.columns(3)
+
+
+with feature1:
+
+    st.markdown(
+        """
+        ### 🧠 Transformer Model
+
+        Uses a pre-trained DistilBERT Transformer
+        model for intelligent question answering.
+        """
+    )
+
+
+with feature2:
+
+    st.markdown(
+        """
+        ### 📖 Context Based
+
+        Searches the supplied context and extracts
+        the most relevant answer span.
+        """
+    )
+
+
+with feature3:
+
+    st.markdown(
+        """
+        ### 🎯 Confidence Score
+
+        Displays the model's confidence score for
+        the extracted answer.
+        """
+    )
 
 
 # ============================================================
@@ -352,5 +472,6 @@ st.divider()
 
 st.caption(
     "AI QnA • Week 2 • NLP • Task 03 • "
-    "Transformer Question Answering"
+    "Powered by Transformers & Streamlit"
 )
+

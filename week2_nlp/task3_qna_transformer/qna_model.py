@@ -14,7 +14,8 @@ MODEL_NAME = "distilbert-base-cased-distilled-squad"
 
 def load_qa_model():
     """
-    Load the pre-trained HuggingFace Question Answering model.
+    Load the pre-trained HuggingFace
+    extractive Question Answering model.
     """
 
     qa_pipeline = pipeline(
@@ -32,7 +33,7 @@ def load_qa_model():
 
 def get_answer(qa_pipeline, context, question):
     """
-    Generate an answer using the provided context and question.
+    Extract the most relevant answer from the context.
     """
 
     result = qa_pipeline(
@@ -49,7 +50,7 @@ def get_answer(qa_pipeline, context, question):
 
 
 # ============================================================
-# SIMPLE COMMAND-LINE TEST
+# COMMAND LINE TEST
 # ============================================================
 
 if __name__ == "__main__":
@@ -62,14 +63,15 @@ if __name__ == "__main__":
 
     qa = load_qa_model()
 
-    print("Model loaded successfully!\n")
+    print("Model loaded successfully!")
 
     context = """
-    Python is a high-level programming language created by Guido van Rossum.
-    It was first released in 1991. Python is widely used for artificial
-    intelligence, machine learning, data science, web development,
-    automation, and software development. Python is known for its
-    simple and readable syntax.
+    Python is a high-level programming language created by
+    Guido van Rossum. It was first released in 1991.
+    Python is widely used for artificial intelligence,
+    machine learning, data science, web development,
+    automation, and software development.
+    Python is known for its simple and readable syntax.
     """
 
     question = "Who created Python?"
@@ -80,7 +82,7 @@ if __name__ == "__main__":
         question
     )
 
-    print("QUESTION")
+    print("\nQUESTION")
     print("-" * 60)
     print(question)
 
